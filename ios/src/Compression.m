@@ -39,28 +39,25 @@
                   compressImageMaxHeight:(CGFloat)maxHeight
                               intoResult:(ImageResult*)result {
     
+    //[origin] if ([maxWidth integerValue] == 0 || [maxHeight integerValue] == 0) {
+    //when pick a width< height image and only set "compressImageMaxWidth",will cause a {0,0}size image
+    //Now fix it
+    if (maxWidth  == 0 || maxHeight  == 0) {
+        result.width = [NSNumber numberWithFloat:image.size.width];
+        result.height = [NSNumber numberWithFloat:image.size.height];
+        result.image = image;
+        return result;
+    }
+    
     CGFloat oldWidth = image.size.width;
     CGFloat oldHeight = image.size.height;
     
-    int newWidth = 0;
-    int newHeight = 0;
-    
-    if (maxWidth < maxHeight) {
-        newWidth = maxWidth;
-        newHeight = (oldHeight / oldWidth) * newWidth;
-    } else {
-        newHeight = maxHeight;
-        newWidth = (oldWidth / oldHeight) * newHeight;
-    }
-                                  
-                                  
-    CGFloat scaleFactor = (oldWidth > oldHeight) ? [maxWidth floatValue] / oldWidth : [maxHeight floatValue] / oldHeight;
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? maxWidth / oldWidth : maxHeight / oldHeight;
     if(scaleFactor>1){
         scaleFactor=1;
     }
     int newWidth = oldWidth * scaleFactor;
     int newHeight = oldHeight * scaleFactor;
-                                  
     CGSize newSize = CGSizeMake(newWidth, newHeight);
     
     UIGraphicsBeginImageContext(newSize);
