@@ -8,6 +8,7 @@
 
 #import "Compression.h"
 
+#import "SDAVAssetExportSession.h"
 @implementation Compression
 
 - (instancetype)init {
