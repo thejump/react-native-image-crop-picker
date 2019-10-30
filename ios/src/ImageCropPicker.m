@@ -814,7 +814,8 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
             }]];
             return;
         }
-
+   NSNumber* duration=@(0);
+        
         // Wait for viewController to dismiss before resolving, or we lose the ability to display
         // Alert.alert in the .then() handler.
         [viewController dismissViewControllerAnimated:YES completion:[self waitAnimationEnd:^{
@@ -825,6 +826,7 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
                                            withFilename:filename
                                               withWidth:imageResult.width
                                              withHeight:imageResult.height
+                            withOriginalDuration:duration
                                                withMime:imageResult.mime
                                                withSize:[NSNumber numberWithUnsignedInteger:imageResult.data.length]
                                                withData:[[self.options objectForKey:@"includeBase64"] boolValue] ? [imageResult.data base64EncodedStringWithOptions:0] : nil
