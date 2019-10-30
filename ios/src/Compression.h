@@ -30,7 +30,7 @@
 - (void)compressVideo:(NSURL*)inputURL
             outputURL:(NSURL*)outputURL
           withOptions:(NSDictionary*)options
-              handler:(void (^)(AVAssetExportSession*))handler;
+              handler:(void (^)(AVAssetExportSession*,NSNumber*))handler;
 
 @property NSDictionary *exportPresets;
 
