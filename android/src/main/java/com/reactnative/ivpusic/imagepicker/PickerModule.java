@@ -515,7 +515,13 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                             video.putInt("size", (int) new File(videoPath).length());
                             video.putString("path", "file://" + videoPath);
                             video.putString("modificationDate", String.valueOf(modificationDate));
-
+                            if(path.equals(videoPath)){		
+                                //it was not compressed		
+                                video.putInt("originalDuration",0);		
+                            }		
+                            else{		
+                                video.putInt("originalDuration",601);		
+                            }
                             resultCollector.notifySuccess(video);
                         } catch (Exception e) {
                             resultCollector.notifyProblem(E_NO_IMAGE_DATA_FOUND, e);
