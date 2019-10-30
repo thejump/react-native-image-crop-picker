@@ -536,7 +536,10 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
                                       withOriginalDuration:originalDuration
                                                   withMime:@"video/mp4"
                                                   withSize:fileSizeValue
-                                                  withData:nil]);
+                                                  withData:nil
+                                 withRect:CGRectNull
+                                     withCreationDate:nil
+                                 withModificationDate:nil]);
              } else {
                  completion(nil);
              }
