@@ -154,6 +154,14 @@
         default:
             break;
     }
+    width=roundf(width);
+    height=roundf(height);
+      if((int)width%2!=0){
+        width=width+1;
+    }
+    if((int)height%2!=0){
+           height=height+1;
+       }
     NSLog(@"video 1 w : %f  ", width);
     NSLog(@"video 1 h : %f  ", height);
     
