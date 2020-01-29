@@ -691,7 +691,9 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                     return;
                 }
 
-                //jgc
+             //jgc
+                try {
+           
                  String path = resolveRealPath(activity, uri, false);
         if (path == null || path.isEmpty()) {
             //not video
@@ -706,7 +708,10 @@ else{
                     }
         }
 }
+                } catch (Exception ex) {
+                }
                 //end jgc
+                
                 
                 
                 
