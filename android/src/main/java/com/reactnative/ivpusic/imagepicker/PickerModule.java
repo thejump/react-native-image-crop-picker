@@ -691,6 +691,25 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                     return;
                 }
 
+                //jgc
+                 String path = resolveRealPath(activity, uri, false);
+        if (path == null || path.isEmpty()) {
+            //not video
+        }
+else{
+        String mime = getMimeType(path);
+        if (mime != null && mime.startsWith("video/")) {
+          try {
+                        getAsyncSelection(activity, uri, false);
+                    } catch (Exception ex) {
+                        resultCollector.notifyProblem(E_NO_IMAGE_DATA_FOUND, ex.getMessage());
+                    }
+        }
+}
+                //end jgc
+                
+                
+                
                 if (cropping) {
                     startCropping(activity, uri);
                 } else {
