@@ -131,7 +131,13 @@
     double height=clipVideoTrack.naturalSize.height;
     double width=clipVideoTrack.naturalSize.width;
     
-    CGFloat scaleFactor = (width > height) ? 1280 / width : 1280 / height;
+    double maxSize=1280;
+    
+    if([[options objectForKey:@"premium"] boolValue]){
+        maxSize=1920;
+    }
+    
+    CGFloat scaleFactor = (width > height) ? maxSize / width : maxSize / height;
     if(scaleFactor>1){
         scaleFactor=1;
     }
@@ -176,7 +182,9 @@
     
     NSNumber *_duration = [options valueForKey:@"videoDuration"];
     double duration = [_duration doubleValue];
-    if(CMTimeGetSeconds(videoAsset.duration)>duration){
+    
+  
+    if(CMTimeGetSeconds(videoAsset.duration)>duration && ![[options objectForKey:@"premium"] boolValue]){
         instruction.timeRange =CMTimeRangeMake( kCMTimeZero, CMTimeMakeWithSeconds(duration, 600));
     }
     else{
