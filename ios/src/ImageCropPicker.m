@@ -92,7 +92,8 @@ RCT_EXPORT_MODULE();
                                 @"showsSelectedCount": @YES,
                                 @"forceJpg": @NO,
                                 @"cropperCancelText": @"Cancel",
-                                @"cropperChooseText": @"Choose"
+                                @"cropperChooseText": @"Choose",
+                                @"premium":@NO
                                 };
         self.compression = [[Compression alloc] init];
     }
