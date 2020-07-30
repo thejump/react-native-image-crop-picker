@@ -981,7 +981,7 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
     filePath = [filePath stringByAppendingString:@".jpg"];
 
     // save cropped file
-    BOOL status = [data writeToFile:filePath atomically:YES];
+    BOOL status = [data writeToFile:filePath atomically:NO];
     if (!status) {
         return nil;
     }
