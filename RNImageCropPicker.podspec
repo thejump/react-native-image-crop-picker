@@ -17,6 +17,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'QBImagePickerController'
 
-  end
 end
 
