@@ -300,7 +300,7 @@ RCT_EXPORT_METHOD(openPicker:(NSDictionary *)options
             imagePickerController.minimumNumberOfSelection = abs([[self.options objectForKey:@"minFiles"] intValue]);
             imagePickerController.maximumNumberOfSelection = abs([[self.options objectForKey:@"maxFiles"] intValue]);
             imagePickerController.showsNumberOfSelectedAssets = [[self.options objectForKey:@"showsSelectedCount"] boolValue];
-            imagePickerController.sortOrder = [self.options objectForKey:@"sortOrder"];
+          //  imagePickerController.sortOrder = [self.options objectForKey:@"sortOrder"];
 
             NSArray *smartAlbums = [self.options objectForKey:@"smartAlbums"];
             if (smartAlbums != nil) {
@@ -334,7 +334,7 @@ RCT_EXPORT_METHOD(openPicker:(NSDictionary *)options
                                          @"Animated" : @(PHAssetCollectionSubtypeSmartAlbumAnimated),
                                          @"LongExposure" : @(PHAssetCollectionSubtypeSmartAlbumLongExposures),
                                          };
-                
+
                 NSMutableArray *albumsToShow = [NSMutableArray arrayWithCapacity:smartAlbums.count];
                 for (NSString* smartAlbum in smartAlbums) {
                     if ([albums objectForKey:smartAlbum] != nil) {
@@ -359,7 +359,7 @@ RCT_EXPORT_METHOD(openPicker:(NSDictionary *)options
                 }
 
          //   }
-            
+
 
             [imagePickerController setModalPresentationStyle: UIModalPresentationFullScreen];
             [[self getRootVC] presentViewController:imagePickerController animated:YES completion:nil];
@@ -495,6 +495,11 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
                                       forKey:NSURLFileSizeKey
                                        error:nil];
 
+                 AVURLAsset *durationFromUrl = [AVURLAsset assetWithURL:outputURL];
+                          CMTime time = [durationFromUrl duration];
+                          int milliseconds = ceil(time.value/time.timescale) * 1000;
+
+
                  completion([self createAttachmentResponse:[outputURL absoluteString]
                                                   withExif:nil
                                              withSourceURL:[sourceURL absoluteString]
@@ -505,6 +510,7 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
                                       withOriginalDuration:originalDuration
                                                   withMime:@"video/mp4"
                                                   withSize:fileSizeValue
+                             withDuration:[NSNumber numberWithFloat:milliseconds]
                                                   withData:nil
                                  withRect:CGRectNull
                                      withCreationDate:nil
