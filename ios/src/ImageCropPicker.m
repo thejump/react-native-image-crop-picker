@@ -943,11 +943,11 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
     [self imageCropViewController:cropViewController didCropImage:image usingCropRect:cropRect];
 }
-
+/*
 - (void)cropViewController:(TOCropViewController *)cropViewController didCropToCircularImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
     [self imageCropViewController:cropViewController didCropImage:image usingCropRect:cropRect];
 }
-
+*/
 - (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
     [self dismissCropper:cropViewController selectionDone:NO completion:[self waitAnimationEnd:^{
         if (self.currentSelectionMode == CROPPING) {
